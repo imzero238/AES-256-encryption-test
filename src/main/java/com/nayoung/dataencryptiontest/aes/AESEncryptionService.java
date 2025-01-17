@@ -22,7 +22,7 @@ public class AESEncryptionService {
 	@Value("${encrypt.secret-key}")
 	private String SECRET_KEY;
 
-	public String encryptData(String plainText) throws InvalidAlgorithmParameterException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
+	public String encrypt(String plainText) throws InvalidAlgorithmParameterException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
 		// Generate random IV
 		byte[] iv = new byte[16];
 		SecureRandom random = new SecureRandom();
@@ -45,7 +45,7 @@ public class AESEncryptionService {
 		return Base64.getEncoder().encodeToString(combined);
 	}
 
-	public String decryptData(String encryptedText) throws InvalidAlgorithmParameterException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
+	public String decrypt(String encryptedText) throws InvalidAlgorithmParameterException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
 		byte[] combined = Base64.getDecoder().decode(encryptedText);
 
 		// Extract IV

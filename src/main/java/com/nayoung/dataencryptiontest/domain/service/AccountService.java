@@ -47,7 +47,7 @@ public class AccountService {
 
 	private String isValidPassword(String password, String encryptedPassword) {
 		try {
-			String decryptedData = aesEncryptionService.decryptData(encryptedPassword);
+			String decryptedData = aesEncryptionService.decrypt(encryptedPassword);
 			log.info("[AES decryption(password)] {} -> {}", encryptedPassword, decryptedData);
 			log.info("Password comparison result: {}", password.equals(decryptedData));
 			if (password.equals(decryptedData)) {
@@ -61,7 +61,7 @@ public class AccountService {
 
 	private String isValidAccountNumber(String accountNumber, String encryptedAccountNumber) {
 		try {
-			String decryptedData = aesEncryptionService.decryptData(encryptedAccountNumber);
+			String decryptedData = aesEncryptionService.decrypt(encryptedAccountNumber);
 			log.info("[AES decryption(account number)] {} -> {}", encryptedAccountNumber, decryptedData);
 			log.info("Account number comparison result: {}", accountNumber.equals(decryptedData));
 			if (accountNumber.equals(decryptedData)) {
